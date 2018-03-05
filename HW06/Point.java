@@ -1,9 +1,3 @@
-/*
-    Chris Janousek
-	 CS210 Assignment HW05 chapter 8 #3
-    2/7/2018
-*/
-
 public class Point{
 
   public static void main(String[] args){

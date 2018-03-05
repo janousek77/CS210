@@ -1,9 +1,3 @@
-/*
-    Chris Janousek
-	 CS210 Assignment HW05 chapter 7 #15
-    2/7/2018
-*/
-
 import java.util.*;
 
 public class collapse {

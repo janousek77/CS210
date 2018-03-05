@@ -1,9 +1,3 @@
-/*
-    Chris Janousek
-	 CS210 Assignment HW05 chapter 7 #18
-    2/7/2018
-*/
-
 import java.util.*;
 import java.io.*;
 

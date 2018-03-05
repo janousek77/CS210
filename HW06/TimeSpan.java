@@ -1,9 +1,3 @@
-/*
-    Chris Janousek
-	 CS210 Assignment HW05 chapter 8 #7
-    2/7/2018
-*/
-
 public class TimeSpan {
 
   public static void main(String[] args){
