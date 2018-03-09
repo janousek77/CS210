@@ -1,50 +1,5 @@
 public class Date{
 
-  public static void main(String[] args){
-    Date one = new Date(2,1,2000);                          // objects created for tests
-    Date two = new Date(12,1,2002);
-    Date three = new Date(4,11,2016);
-    Date four = new Date(1,21,2016);
-    Date five = new Date(1,01,2004);
-    Date six = new Date(2,01,2005);
-
-    System.out.println("Days from 2/1/2000 - 12/1/2002");   // Tests
-    System.out.println(one.daysTo(two));
-    System.out.println();
-    System.out.println("Days from 12/1/2002 - 4/11/2016");
-    System.out.println(two.daysTo(three));
-    System.out.println();
-    System.out.println("Days from 4/11/2016 - 1/21/2016");
-    System.out.println(three.daysTo(four));
-    System.out.println();
-    System.out.println("Days from 1/21/2016 - 1/1/2004");
-    System.out.println(four.daysTo(five));
-    System.out.println();
-    System.out.println("Days from 1/1/2004 - 2/1/2005");
-    System.out.println(five.daysTo(six));
-    System.out.println();
-    System.out.println(one.toString());
-    System.out.println("getDay " + one.getDay());
-    System.out.println("getMonth " + one.getMonth());
-    System.out.println("getYear " + one.getYear());
-    one.addDays(75);
-    System.out.println("75 days from original date " + one.toString());
-    System.out.println("It is a leap year: " + one.isLeapYear());
-    System.out.println();
-    System.out.println(two.toString());
-    System.out.println("It is a leap year: " + two.isLeapYear());
-    two.addDays(33);
-    System.out.println("33 days from original date " + two.toString());
-    System.out.println("It is a leap year: " + two.isLeapYear());
-    two.addWeeks(208);
-    System.out.println("208 weeks after last date " + two.toString());
-    System.out.println();
-    System.out.println(three.toString());
-    three.addWeeks(57);
-    System.out.println("57 weeks after original date " + three.toString());
-    System.out.println();
-  }
-
   private int month, day, year;
 
   // Date constructor that checks to make sure that months are between 1-12 and days are between 1-31
@@ -58,14 +13,14 @@ public class Date{
 
   // Moves this Date object forward in time by the given number of days.
   public void addDays(int days){
-    int monthDays = 0;            // variable that stores how many days are in the current month
-    day += days;                  // adds the amount of days passed into method to the days of the object
+    int monthDays = 0;            // Variable that stores how many days are in the current month
+    day += days;                  // Adds the amount of days passed into method onto the days of the object
 
     while (day > monthDays) {     // Starts while loop to start moving date forward and subtracting days.
       monthDays = 0;              // Resets monthDay variable after every iteration
       if(monthDays == 0){         // If monthDays equals 0 set it equal to the amount of days in the current month.
         if(month == 2)
-          if(this.isLeapYear())   // changes dates for Feb if it a leap year
+          if(this.isLeapYear())   // Changes dates for Feb if it a leap year
             monthDays = 29;
           else
             monthDays = 28;
@@ -106,7 +61,7 @@ public class Date{
     Date current = new Date(month, day, year);                              // Creates a copy of original object to move forward to match the date other object.
 
     if (year > other.year || (year == other.year && month > other.month)) {
-      return other.daysTo(this);                    // reverses the objects if the older date is being passed in so there aren't any negative numbers.
+      return other.daysTo(this);                    // Reverses the objects if the older date is being passed in so there aren't any negative numbers.
     } else {
       while(current.month != other.month){           // Starts while loop to bring months equal to the other object's months.
         dayArray[2] = 28;
