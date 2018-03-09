@@ -1,51 +1,48 @@
 public class Date{
 
   public static void main(String[] args){
-    Date one = new Date(2,1,2000);                        // objects created for tests
+    Date one = new Date(2,1,2000);                          // objects created for tests
     Date two = new Date(12,1,2002);
     Date three = new Date(4,11,2016);
     Date four = new Date(1,21,2016);
     Date five = new Date(1,01,2004);
     Date six = new Date(2,01,2005);
 
+    System.out.println("Days from 2/1/2000 - 12/1/2002");   // Tests
     System.out.println(one.daysTo(two));
     System.out.println();
-    System.out.println(two.daysTo(three));  // one day too few
+    System.out.println("Days from 12/1/2002 - 4/11/2016");
+    System.out.println(two.daysTo(three));
     System.out.println();
+    System.out.println("Days from 4/11/2016 - 1/21/2016");
     System.out.println(three.daysTo(four));
     System.out.println();
+    System.out.println("Days from 1/21/2016 - 1/1/2004");
     System.out.println(four.daysTo(five));
     System.out.println();
+    System.out.println("Days from 1/1/2004 - 2/1/2005");
     System.out.println(five.daysTo(six));
-
-    // System.out.println(one.toString());                   // Tests
-    // System.out.println("getDay " + one.getDay());
-    // System.out.println("getMonth " + one.getMonth());
-    // System.out.println("getYear " + one.getYear());
-    // one.addDays(75);
-    // System.out.println("75 days from original date " + one.toString());
-    // System.out.println("It is a leap year: " + one.isLeapYear());
-    // System.out.println();
-    //
-    // System.out.println(two.toString());
-    // System.out.println("It is a leap year: " + two.isLeapYear());
-    // two.addDays(33);
-    // System.out.println("33 days from original date " + two.toString());
-    // System.out.println("It is a leap year: " + two.isLeapYear());
-    // two.addWeeks(208);
-    // System.out.println("208 weeks after last date " + two.toString());
-    // System.out.println();
-    // System.out.println(three.toString());
-    // three.addWeeks(57);
-    // System.out.println("57 weeks after original date " + three.toString());
-    // System.out.println();
-    // System.out.println();
-    // System.out.println(four.daysTo(three));
-    // System.out.println();
-    // System.out.println(three.daysTo(four));
-    // System.out.println();
-    // System.out.println(five.daysTo(six));
-
+    System.out.println();
+    System.out.println(one.toString());
+    System.out.println("getDay " + one.getDay());
+    System.out.println("getMonth " + one.getMonth());
+    System.out.println("getYear " + one.getYear());
+    one.addDays(75);
+    System.out.println("75 days from original date " + one.toString());
+    System.out.println("It is a leap year: " + one.isLeapYear());
+    System.out.println();
+    System.out.println(two.toString());
+    System.out.println("It is a leap year: " + two.isLeapYear());
+    two.addDays(33);
+    System.out.println("33 days from original date " + two.toString());
+    System.out.println("It is a leap year: " + two.isLeapYear());
+    two.addWeeks(208);
+    System.out.println("208 weeks after last date " + two.toString());
+    System.out.println();
+    System.out.println(three.toString());
+    three.addWeeks(57);
+    System.out.println("57 weeks after original date " + three.toString());
+    System.out.println();
   }
 
   private int month, day, year;
@@ -106,17 +103,16 @@ public class Date{
   public int daysTo(Date other){
     int[] dayArray = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};   // Array with values equal to each months days.
     int days = 0;                                                           // Sets days that will be returned at the end.
-    Date current = new Date(month, day, year);
+    Date current = new Date(month, day, year);                              // Creates a copy of original object to move forward to match the date other object.
 
     if (year > other.year || (year == other.year && month > other.month)) {
-      return other.daysTo(this);              // reverses the objects if the older date is being passed in so there aren't any negative numbers.
+      return other.daysTo(this);                    // reverses the objects if the older date is being passed in so there aren't any negative numbers.
     } else {
       while(current.month != other.month){           // Starts while loop to bring months equal to the other object's months.
         dayArray[2] = 28;
         if (current.isLeapYear()) {                  // Checks if the object is a leap year.
           dayArray[2] = 29;                          // Changes amount of days in array to 29 for leap year.
-          if(current.month < 3
-             && current.month > 1
+          if(current.month == 2                      // Adds day for edge case for when its a leap year and Feb so it doesn't add the extra day from the array.
              && other.year > current.year)
             day++;
         }
@@ -124,7 +120,7 @@ public class Date{
         current.month++;                             // Increments the month.
         if(current.month == 13){
           current.month = 1;                         // Moves month to Jan.
-          current.year++;                            // Decrements the year.
+          current.year++;                            // Increments the year.
         }
       }
 
@@ -135,10 +131,12 @@ public class Date{
           days += 365;                               // Adds days
         current.year++;                              // Increments the year.
       }
+      if(other.isLeapYear() && !this.isLeapYear())   // Adds a day for when the original year isn't a leap year but the second one is.
+      days++;
 
       if(day > other.day)                           // If the day is greater than the other objects day.
         return days - Math.abs(day-other.day);      // Subtract the days.
-      return days + Math.abs(day-other.day);        // Add the days.
+      return days + Math.abs(day-other.day);        // If not add the days.
     }
   }
 
